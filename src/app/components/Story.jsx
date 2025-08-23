@@ -27,137 +27,155 @@ export default function Story() {
     visible: { opacity: 1, y: 0 },
   };
 
+  const jumpVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: -20,
+      transition: {
+        repeat: Infinity,
+        repeatType: "reverse",
+        duration: 2,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   const cardData = [
     {
-      icon: <RocketLaunchIcon className="flex justify-center h-10 w-10 text-blue-400 mb-4" />,
+      icon: <RocketLaunchIcon className="h-10 w-10 text-yellow-300" />,
       title: "Meme-Powered Rocket",
-      description: "AstroDuck’s rocket runs not on fuel, but on memes, laughter, and community determination.",
+      description: "AstroDuck’s journey is fueled by a vibrant community, not just rocket fuel. This is a mission powered by shared laughter and collective ambition.",
     },
     {
-      icon: <GlobeAltIcon className="flex justify-center h-10 w-10 text-yellow-400 mb-4" />,
+      icon: <GlobeAltIcon className="h-10 w-10 text-yellow-300" />,
       title: "Galactic Adventures",
-      description: "From Earth’s pond to the farthest galaxies — bringing ducks, aliens, and DeFi together.",
+      description: "Our adventure extends far beyond the pond. We're uniting people across the globe and the cosmos with a shared vision of fun and financial freedom.",
     },
     {
-      icon: <UsersIcon className="flex justify-center h-10 w-10 text-purple-400 mb-4" />,
+      icon: <UsersIcon className="h-10 w-10 text-yellow-300" />,
       title: "Community Driven",
-      description: "AstroDuck thrives because of YOU — the strongest meme + DeFi community in the universe.",
+      description: "This project is built for the community, by the community. Your participation is the engine that drives AstroDuck to new heights.",
     },
     {
-      icon: <CurrencyDollarIcon className="flex justify-center h-10 w-10 text-green-400 mb-4" />,
-      title: "100x Potential",
-      description: "From $0.01 presale to $1 target — the mission aims for moon landings and beyond.",
+      icon: <CurrencyDollarIcon className="h-10 w-10 text-yellow-300" />,
+      title: "Growth Potential",
+      description: "With a strategic roadmap and a dedicated team, we're focused on building long-term value and delivering a successful journey for all holders.",
     },
   ];
 
   return (
-    <div id="the-story" className="w-full space-y-10 py-20 px-6 md:px-12 lg:px-24 bg-gray-950 text-gray-50 text-center">
+    <div id="the-story" className="relative w-full space-y-20 overflow-hidden bg-gray-950 px-6 py-20 text-center text-gray-50 md:px-12 lg:px-24">
+      {/* Background Gradient & Pattern */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_center,white,transparent)]" />
+      </div>
+
       <motion.div
-        className="max-w-5xl mx-auto"
+        className="relative z-10 mx-auto max-w-6xl"
         initial="hidden"
         whileInView="visible"
         variants={containerVariants}
         viewport={{ once: true, amount: 0.2 }}
       >
         {/* Section Title */}
-        <motion.h2 
-          className="text-4xl md:text-5xl font-extrabold yellow-text mb-16 flex items-center justify-center space-x-2"
+        <motion.h2
+          className="mb-4 text-4xl font-extrabold tracking-tight text-yellow-300 md:text-6xl"
           variants={itemVariants}
         >
-          <span role="img" aria-label="duck emoji">🦆</span>
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            The Story of AstroDuck
-          </span>
+          <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">The AstroDuck Mission</span>
         </motion.h2>
 
         {/* Story Intro */}
-        <motion.p 
-          className="max-w-3xl mx-auto text-lg text-gray-300 font-light leading-relaxed mb-12"
+        <motion.p
+          className="mx-auto mb-16 max-w-4xl text-lg font-light leading-relaxed text-gray-300 md:text-xl"
           variants={itemVariants}
         >
-          In a quiet pond, a curious duck dreamed bigger than the ripples of water. 
-          While others waddled, he looked at the stars and asked: 
-          <span className="italic text-purple-300"> "Why waddle when I can fly?"</span>
+          AstroDuck isn't just a meme. It's a professional venture into the cosmos of Web3, powered by cutting-edge Solana technology and a vision for community-driven success.
         </motion.p>
 
-        {/* Story Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-10">
+        {/* Story Layout with Image & Text */}
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Text Block */}
-          <motion.div className="space-y-2 text-left" variants={itemVariants}>
-            <h3 className="text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              From Pond to Stars
+          <motion.div className="space-y-6 text-left" variants={itemVariants}>
+            <h3 className="text-3xl font-bold leading-tight md:text-4xl">
+              From Concept to Launch
             </h3>
-            <p className="space-y-4 text-gray-300 leading-relaxed text-lg md:text-xl font-light mb-6">
-              Powered by memes, moonlight, and sheer determination, 
-              AstroDuck built a rocket of laughter and launched into the cosmos. 
-              Now he quacks with aliens, explores galaxies, and delivers financial freedom.
+            <p className="text-lg font-light leading-relaxed text-gray-300 md:text-xl">
+              Our journey began with a clear objective: to build a secure, transparent, and scalable project on the Solana blockchain. Every decision, from tokenomics to community engagement, has been made with a focus on sustainable growth and long-term value for our community.
             </p>
-            <p className="text-lg text-gray-300 font-light leading-relaxed mb-6">
-              And he’s not flying alone — this journey is powered by community, 
-              DeFi energy, and interstellar meme culture.
+            <p className="text-lg font-light leading-relaxed text-gray-300 md:text-xl">
+              We've created a framework where innovation meets integrity, ensuring that AstroDuck is not just a trend, but a lasting presence in the DeFi space.
             </p>
-            <div className="w-full text-center md:text-left mt-8">
-              <Link 
+            <div className="mt-8 flex justify-center md:justify-start">
+              <Link
                 href="#"
-                className="inline-block px-8 py-3 bg-white text-black font-bold text-lg rounded-2xl shadow-lg hover:bg-gray-200 transition-colors duration-300"
+                className="group inline-block transform rounded-full bg-yellow-400 px-10 py-4 text-lg font-bold uppercase tracking-wide text-black transition-all duration-300 hover:scale-105 hover:bg-yellow-300 active:scale-95"
               >
-                Buy ADUCK
+                Explore Roadmap
+                <span className="ml-2 inline-block transition-transform group-hover:translate-x-2">→</span>
               </Link>
             </div>
           </motion.div>
 
-          {/* Image */}
-          <motion.div className="relative p-8" variants={itemVariants}>
-            <div className="relative w-60 h-60 md:w-40 md:h-40 mx-auto animate-bounce transition-all duration-700 overflow-hidden rounded-full">
+          {/* Image with Jumping and Circular shape */}
+          <motion.div
+            className="relative flex justify-center p-8"
+            variants={jumpVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <div className="relative w-full max-w-sm overflow-hidden rounded-full border-2 border-gray-700 shadow-2xl md:w-[75%]">
               <Image
                 src="/story.png"
-                alt="AstroDuck in rocket"
-                width={350}
-                height={350}
+                alt="AstroDuck in professional setting"
+                width={500}
+                height={500}
                 quality={100}
-                className="absolute inset-0 w-48 h-48 md:w-35 md:h-35 object-contain rounded-2xl shadow-2xl border border-gray-700 backdrop-blur-sm"
+                className="w-full rounded-full"
               />
+              <div className="absolute inset-0 rounded-full bg-black/30" />
             </div>
           </motion.div>
         </div>
 
         {/* Feature Cards */}
-        <div className="mt-20 mb-10">
+        <div className="mt-20">
           <motion.h3
-            className="text-3xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500 font-extrabold text-white mb-10"
+            className="mb-10 text-3xl font-extrabold text-white md:text-4xl"
             variants={itemVariants}
           >
-            Why AstroDuck?
+            Our Core Principles
           </motion.h3>
 
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {cardData.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-[#1d243e] rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all duration-300 hover:transform hover:scale-105 text-center space-y-4"
+                className="rounded-xl border-2 border-gray-800 bg-gray-900/50 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400"
                 variants={itemVariants}
               >
-                <div className="flex justify-center">{card.icon}</div>
-                <h4 className="text-xl font-bold mb-2">{card.title}</h4>
-                <p className="text-lg md:text-md text-gray-400">{card.description}</p>
+                <div className="mb-4 flex justify-center">{card.icon}</div>
+                <h4 className="mb-2 text-xl font-bold text-white">{card.title}</h4>
+                <p className="text-sm font-light leading-relaxed text-gray-400">{card.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Call to Action */}
-        <div className="mt-20 w-full max-w-4xl mx-auto text-lg text-gray-300 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link 
+        <div className="mt-20 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Link
             href="#"
-            className="rounded-lg bg-gradient-to-r cursor-pointer text-gray-200 font-semibold from-cyan-300 to-cyan-400 px-6 py-2 focus:outline-none transition hover:shadow-lg hover:shadow-cyan-400/25"
+            className="group inline-block transform rounded-full bg-yellow-400 px-10 py-4 text-lg font-bold uppercase tracking-wide text-black transition-all duration-300 hover:scale-105 hover:bg-yellow-300 active:scale-95"
           >
-            Get Your ADUCK Now
+            Buy ADUCK Now
+            <span className="ml-2 inline-block transition-transform group-hover:translate-x-2">→</span>
           </Link>
-          <Link 
+          <Link
             href="#"
-            className="rounded-lg border-2 cursor-pointer border-cyan-300 text-cyan-300 bg-transparent px-6 py-2 focus:outline-none transition hover:bg-cyan-300 hover:text-gray-800"
+            className="inline-block rounded-full border-2 border-gray-700 px-10 py-4 text-lg font-bold uppercase tracking-wide text-gray-300 transition-all duration-300 hover:border-yellow-400 hover:text-yellow-300 hover:shadow-lg"
           >
-            Learn More
+            Read Our Whitepaper
           </Link>
         </div>
       </motion.div>

@@ -1,108 +1,166 @@
 "use client";
-import Image from "next/image";
+import { motion } from "framer-motion";
 
-export default function Vesting() {
+const Vesting = () => {
+  // Variants for parent container to orchestrate animations
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 20,
+        delayChildren: 0.3,
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  // Variants for individual elements to fade in and move up
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  const vestingSchedule = [
+    {
+      category: "Presale",
+      unlock: "100%",
+      detail: "Immediate unlock",
+    },
+    {
+      category: "Team & Advisors",
+      unlock: "0%",
+      detail: "12-month cliff, then 12-month linear unlock",
+    },
+    {
+      category: "Liquidity",
+      unlock: "100%",
+      detail: "Locked for 12 months",
+    },
+    {
+      category: "Airdrop & Giveaways",
+      unlock: "10%",
+      detail: "3-month linear unlock",
+    },
+    {
+      category: "Master Sale",
+      unlock: "0%",
+      detail: "Strategic releases",
+    },
+    {
+      category: "Marketing / Ecosystem",
+      unlock: "0%",
+      detail: "Governance-controlled unlocks",
+    },
+    {
+      category: "Governance / DAO Treasury",
+      unlock: "0%",
+      detail: "DAO-controlled, proposal-based release",
+    },
+    {
+      category: "Loans Pool",
+      unlock: "0%",
+      detail: "Locked for lending feature development",
+    },
+  ];
+
+  // Variants for the jumping image
+  const jumpVariants = {
+    jump: {
+      y: [0, -15, 0], // Jumps up and down
+      transition: {
+        duration: 2.5,
+        ease: "easeInOut",
+        repeat: Infinity,
+      },
+    },
+  };
+
   return (
-    <section
-      id="vesting"
-      className="relative py-16 px-4 flex flex-col items-center bg-gradient-to-b from-[#0a0b12]"
-    >
-      <div className="w-full space-y-12">
-        {/* Heading */}
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-500 to-fuchsia-800 bg-clip-text text-transparent">
-            Vesting & Unlock Schedule
-          </h1>
-        </div>
+    <section id="vesting" className="relative w-full overflow-hidden bg-zinc-950 py-20 text-white">
+      {/* Background Effect - a subtle grid overlay */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_center,white,transparent)]" />
+      </div>
 
-        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12">
+      <motion.div
+        className="relative z-10 mx-auto max-w-7xl px-6 lg:px-20"
+        initial="hidden"
+        whileInView="visible"
+        variants={containerVariants}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Heading Section */}
+        <motion.div
+          className="text-center"
+          variants={fadeInUp}
+        >
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">
+            <span className="bg-gradient-to-r from-cyan-400 to-fuchsia-600 bg-clip-text text-transparent">
+              Vesting & Unlock Schedule
+            </span>
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-light text-gray-400 md:text-xl">
+            A transparent and detailed schedule for token releases.
+          </p>
+        </motion.div>
+
+        <div className="mt-20 flex flex-col items-center gap-12 lg:flex-row">
           {/* Left Side - Image */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center">
-            <Image
+          <motion.div
+            className="w-full lg:w-1/2 flex justify-center items-center"
+            variants={fadeInUp}
+          >
+            {/* Added motion for dimming and jumping animation */}
+            <motion.img
               src="/vesting.webp"
               alt="Vesting Illustration"
               width={500}
               height={500}
-              className="w-[70%] h-[500px] object-contain"
-              priority
+              className="w-full max-w-[400px] h-auto rounded-3xl object-contain shadow-[0_0_50px_5px_rgba(255,255,255,0.05)] border-2 border-white/10 opacity-60"
+              variants={jumpVariants}
+              animate="jump"
             />
-          </div>
+          </motion.div>
 
           {/* Right Side - Unlock Schedule Card */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center">
-            <div className="w-full bg-[#141726] space-y-5 rounded-2xl p-8 shadow-xl backdrop-blur-md border border-[#252836]">
-              <h4 className="w-full text-center text-lg font-bold text-cyan-500">
+          <motion.div
+            className="w-full lg:w-1/2 flex flex-col items-center"
+            variants={fadeInUp}
+          >
+            <div className="w-full rounded-2xl bg-zinc-900/50 p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/10">
+              <h4 className="w-full text-center text-xl font-bold text-cyan-400 mb-6">
                 Unlock Schedule
               </h4>
-
-              <table className="w-full text-left">
-                <thead>
-                  <tr className="text-cyan-400 text-md">
-                    <th className="pb-2">Category</th>
-                    <th className="pb-2 px-5">TGE Unlock</th>
-                    <th className="pb-2">Vesting Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    {
-                      category: "Presale",
-                      unlock: "100%",
-                      detail: "Immediate unlock",
-                    },
-                    {
-                      category: "Team & Advisors",
-                      unlock: "0%",
-                      detail: "12-month cliff, then 12-month linear unlock",
-                    },
-                    {
-                      category: "Liquidity",
-                      unlock: "100%",
-                      detail: "Locked for 12 months",
-                    },
-                    {
-                      category: "Airdrop & Giveaways",
-                      unlock: "10%",
-                      detail: "3-month linear unlock",
-                    },
-                    {
-                      category: "Master Sale",
-                      unlock: "0%",
-                      detail: "Strategic releases",
-                    },
-                    {
-                      category: "Marketing / Ecosystem",
-                      unlock: "0%",
-                      detail: "Governance-controlled unlocks",
-                    },
-                    {
-                      category: "Governance / DAO Treasury",
-                      unlock: "0%",
-                      detail: "DAO-controlled, proposal-based release",
-                    },
-                    {
-                      category: "Loans Pool",
-                      unlock: "0%",
-                      detail: "Locked for lending feature development",
-                    },
-                  ].map((row, idx) => (
-                    <tr
-                      key={idx}
-                      className="border-t border-[#353a50] text-white text-md hover:bg-[#1f2335]/60 transition-colors"
-                    >
-                      <td className="py-2 w-1/3 font-semibold">{row.category}</td>
-                      <td className="py-2 w-1/3 px-5 font-bold text-[#0dbae2]">
+              <div className="grid grid-cols-1 gap-y-4">
+                {vestingSchedule.map((row, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-xl p-4 transition-colors duration-300 hover:bg-zinc-800/60"
+                    variants={fadeInUp}
+                  >
+                    <div className="flex-1 w-full sm:w-auto mb-2 sm:mb-0">
+                      <p className="text-base font-semibold text-white">{row.category}</p>
+                      <p className="text-sm font-light text-zinc-400 mt-1">{row.detail}</p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <span className="text-lg font-bold text-cyan-300">
                         {row.unlock}
-                      </td>
-                      <td className="py-2 w-1/3 text-sm">{row.detail}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </span>
+                      <span className="ml-2 text-sm text-zinc-400 sm:hidden">Unlock</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
-}
+};
+
+export default Vesting;
