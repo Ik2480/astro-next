@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Buy ADUCK', href: '#buy-aduck', isSpecial: true },
-    { name: 'The Story', href: '#the-story' },
+    { name: 'The Story', href: '#Story' },
     { name: 'AstroLoan', href: '#astro-loan' },
     { name: 'Tokenomics', href: '#tokenomics' },
     { name: 'Vesting', href: '#vesting' },

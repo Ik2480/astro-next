@@ -1,4 +1,5 @@
 "use client";
+import React from 'react';
 import { motion } from "framer-motion";
 
 const Vesting = () => {
@@ -80,14 +81,41 @@ const Vesting = () => {
   };
 
   return (
-    <section id="vesting" className="relative w-full overflow-hidden bg-zinc-950 py-20 text-white">
-      {/* Background Effect - a subtle grid overlay */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_center,white,transparent)]" />
+    <section
+      id="vesting"
+      className="relative w-full min-h-screen overflow-hidden bg-zinc-900 py-16 px-12 text-white"
+    >
+      <style>{`
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.5; }
+        }
+        .starfield-1 {
+          background-image: radial-gradient(white 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: fadeInOut 2s infinite;
+        }
+        .starfield-2 {
+          background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+          background-size: 75px 75px;
+          animation: fadeInOut 3s infinite;
+        }
+        .starfield-3 {
+          background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+          background-size: 100px 100px;
+          animation: fadeInOut 4s infinite;
+        }
+      `}</style>
+
+      {/* Animated Starfield Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 starfield-1" />
+        <div className="absolute inset-0 starfield-2" />
+        <div className="absolute inset-0 starfield-3" />
       </div>
 
       <motion.div
-        className="relative z-10 mx-auto max-w-7xl px-6 lg:px-20"
+        className="relative z-10 mx-auto max-w-4xl"
         initial="hidden"
         whileInView="visible"
         variants={containerVariants}
@@ -131,7 +159,7 @@ const Vesting = () => {
             className="w-full lg:w-1/2 flex flex-col items-center"
             variants={fadeInUp}
           >
-            <div className="w-full rounded-2xl bg-zinc-900/50 p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/10">
+            <div className="w-full rounded-2xl bg-zinc-900/50 p-6 sm:p-8 shadow-lg backdrop-blur-sm">
               <h4 className="w-full text-center text-xl font-bold text-cyan-400 mb-6">
                 Unlock Schedule
               </h4>

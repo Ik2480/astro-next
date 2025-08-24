@@ -1,6 +1,4 @@
-// src/app/components/HeroSection.jsx
 "use client";
-
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -28,14 +26,43 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-      {/* Background Effect */}
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-zinc-900">
+      <style>{`
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.5; }
+        }
+        .starfield-1 {
+          background-image: radial-gradient(white 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: fadeInOut 2s infinite;
+        }
+        .starfield-2 {
+          background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+          background-size: 75px 75px;
+          animation: fadeInOut 3s infinite;
+        }
+        .starfield-3 {
+          background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+          background-size: 100px 100px;
+          animation: fadeInOut 4s infinite;
+        }
+      `}</style>
+
+      {/* Animated Starfield Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 starfield-1" />
+        <div className="absolute inset-0 starfield-2" />
+        <div className="absolute inset-0 starfield-3" />
+      </div>
+
+      {/* Background Grid Effect */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_top,white,transparent)]" />
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex w-full flex-col items-center gap-16 px-6 py-20 text-white md:flex-row md:px-12 lg:px-24">
+      <div className="container relative z-10 mx-auto py-16 px-12 flex flex-col items-center gap-16 text-white md:flex-row max-w-4xl">
         {/* Left Content */}
         <div className="flex w-full flex-col items-center space-y-8 text-center md:w-1/2 md:items-start md:text-left">
           <motion.h1

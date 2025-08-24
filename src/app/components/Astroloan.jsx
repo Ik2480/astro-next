@@ -1,7 +1,6 @@
 "use client";
-
+import React from 'react';
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 // A simple component to replace next/image for displaying images.
 const MyImage = ({ src, alt, width, height, className }) => {
@@ -59,14 +58,41 @@ export default function AstroLoan() {
   ];
 
   return (
-    <section id="astro-loan" className="relative w-full overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-black py-20 text-white">
-      {/* Background Effect - a subtle grid overlay */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_center,white,transparent)]" />
+    <section
+      id="astro-loan"
+      className="relative w-full min-h-screen overflow-hidden bg-zinc-900 py-16 px-12 text-white"
+    >
+      <style>{`
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.5; }
+        }
+        .starfield-1 {
+          background-image: radial-gradient(white 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: fadeInOut 2s infinite;
+        }
+        .starfield-2 {
+          background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+          background-size: 75px 75px;
+          animation: fadeInOut 3s infinite;
+        }
+        .starfield-3 {
+          background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+          background-size: 100px 100px;
+          animation: fadeInOut 4s infinite;
+        }
+      `}</style>
+
+      {/* Animated Starfield Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 starfield-1" />
+        <div className="absolute inset-0 starfield-2" />
+        <div className="absolute inset-0 starfield-3" />
       </div>
 
       <motion.div
-        className="relative z-10 mx-auto max-w-7xl px-6 lg:px-20"
+        className="relative z-10 mx-auto max-w-4xl"
         initial="hidden"
         whileInView="visible"
         variants={containerVariants}
@@ -160,7 +186,6 @@ export default function AstroLoan() {
             ))}
           </div>
         </motion.div>
-
       </motion.div>
     </section>
   );

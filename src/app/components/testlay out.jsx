@@ -24,52 +24,11 @@ const Story = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  // Variants for the jumping image
-  const jumpVariants = {
-    jump: {
-      y: [0, -15, 0], // Jumps up and down
-      transition: {
-        duration: 2.5,
-        ease: "easeInOut",
-        repeat: Infinity,
-      },
-    },
-  };
-
   return (
     <section 
-      id="Story" 
-      className="relative w-full min-h-screen overflow-hidden bg-zinc-900 py-16 px-12 text-white"
+      id="story" 
+      className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-black py-16 px-12 text-white"
     >
-      <style>{`
-        .stars-1 {
-          background-image: radial-gradient(white 1px, transparent 1px);
-          background-size: 50px 50px;
-          animation: blink 2s infinite;
-        }
-        .stars-2 {
-          background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
-          background-size: 75px 75px;
-          animation: blink 3s infinite;
-        }
-        .stars-3 {
-          background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
-          background-size: 100px 100px;
-          animation: blink 4s infinite;
-        }
-        @keyframes blink {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.5; }
-        }
-      `}</style>
-      
-      {/* Blinking stars background effect */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 stars-1" />
-        <div className="absolute inset-0 stars-2" />
-        <div className="absolute inset-0 stars-3" />
-      </div>
-
       {/* Background Effect - a subtle grid overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:radial-gradient(100%_100%_at_center,white,transparent)]" />
@@ -105,14 +64,12 @@ const Story = () => {
             variants={fadeInUp}
           >
             <div className="relative w-full max-w-[400px] h-auto rounded-3xl border-2 border-yellow-400 shadow-[0_0_50px_5px_#fde047] overflow-hidden">
-              <motion.img
-                src="/story.png"
+              <Image
+                src="/rocket.webp"
                 alt="AstroDuck rocket ship illustration"
                 width={500}
                 height={500}
                 className="object-contain"
-                variants={jumpVariants}
-                animate="jump"
               />
             </div>
           </motion.div>
